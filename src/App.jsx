@@ -5,7 +5,7 @@ import viteLogo from '/vite.svg'
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import Home from './pages/Home'
 import JobForm from './pages/JobForm'
-import JobDetails from './pages/jobDetails'
+import JobDetails from './pages/JobDetails'
 function App() {
 
   return (
