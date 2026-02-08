@@ -8,7 +8,7 @@ const JobDetails = ()=>{
     useEffect(()=>{
         const fetchJob = async()=>{
             try {
-                const res = await fetch(`http://localhost:3000/jobs/${id}`)
+                const res = await fetch(`https://job-app-backend-alpha.vercel.app/jobs/${id}`)
                 if(!res.ok){
                     throw new Error("Failed to fetch job")
                 }

@@ -31,7 +31,7 @@ const JobForm = ()=>{
         const jobData = {...form, qualifications: qualifications.split(",").map(q=>q.trim())}
 
         try {
-            const res = await fetch("http://localhost:3000/jobs",{
+            const res = await fetch("https://job-app-backend-alpha.vercel.app/jobs",{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},
                 body: JSON.stringify(jobData),

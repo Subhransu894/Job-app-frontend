@@ -14,7 +14,7 @@ const Home = ()=>{
     )
 
     useEffect(()=>{
-        fetch("http://localhost:3000/jobs")
+        fetch("https://job-app-backend-alpha.vercel.app/jobs")
         .then((res)=>res.json())
         .then((data)=>setJobs(data))
         .catch((err)=>console.log(err))
@@ -25,7 +25,7 @@ const Home = ()=>{
         if(!window.confirm("Are you sure you want to delete this job? ")) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/jobs/${id}`,{
+            const res = await fetch(`https://job-app-backend-alpha.vercel.app/jobs/${id}`,{
                 method:"DELETE",
             })
             if(!res.ok){
