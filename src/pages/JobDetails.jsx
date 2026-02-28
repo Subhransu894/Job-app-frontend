@@ -33,14 +33,14 @@ const JobDetails = ()=>{
                     <p><strong>Location:</strong>{job.location}</p>
                     <p><strong>Salary:</strong>{job.salary}</p>
                     <p><strong>Job Type:</strong>{job.jobType}</p>
-                    <p><strong>Descripttion:</strong>{job.description}</p>
-                    <p><strong>Qualifications:</strong>
+                    <p><strong>Description:</strong>{job.description}</p>
+                    <p><strong>Qualifications:</strong></p>
                         <ol>
                             {job.qualifications.map((q,idx)=>(
                                 <li key={idx}>{q}</li>
                             ))}
                         </ol>
-                    </p>
+                    
                 </div>
             </div>
         </>

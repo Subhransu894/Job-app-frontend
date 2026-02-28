@@ -5,6 +5,7 @@ const Home = ()=>{
     const navigate = useNavigate()
     const [jobs,setJobs]=useState([])
     const [search,setSearch]=useState("")
+    const [loading,setLoading]=useState(true)
     
     const filterJob = jobs.filter((job)=>
         job.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -16,8 +17,14 @@ const Home = ()=>{
     useEffect(()=>{
         fetch("https://job-app-backend-alpha.vercel.app/jobs")
         .then((res)=>res.json())
-        .then((data)=>setJobs(data))
-        .catch((err)=>console.log(err))
+        .then((data)=>{
+            setJobs(data)
+            setLoading(false)
+        })
+        .catch((err)=>{
+            console.log(err)
+            setLoading(false)
+        })
     },[])
 
     //delete job
@@ -48,7 +55,7 @@ const Home = ()=>{
             <h3 className="mb-4">All Jobs</h3>
             {/* all job cards */}
             <div className="row g-3">
-                {filterJob.length > 0 ? (filterJob.map((job)=>(
+                {loading? ( <p className="text-center">Loading Jobs...</p> ) : filterJob.length > 0 ? (filterJob.map((job)=>(
                     <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={job._id}>
                         <div className="card shadow-sm h-100">
                             <div className="card-body">

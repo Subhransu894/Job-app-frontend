@@ -16,6 +16,7 @@ const JobForm = ()=>{
     //handle input change
     const handleChange=(e)=>{
         setForm({...form,[e.target.name]:e.target.value})
+        setError("")
     }
     //handle form submission
     const handleSubmit = async(e) =>{
@@ -28,7 +29,7 @@ const JobForm = ()=>{
             return;
         }
         //convert qualification to array with comma(,) separate
-        const jobData = {...form, qualifications: qualifications.split(",").map(q=>q.trim())}
+        const jobData = {...form, salary:Number(salary),qualifications: qualifications.split(",").map(q=>q.trim())}
 
         try {
             const res = await fetch("https://job-app-backend-alpha.vercel.app/jobs",{
@@ -37,7 +38,8 @@ const JobForm = ()=>{
                 body: JSON.stringify(jobData),
             })
             if(!res.ok){
-                throw new Error("Failed to post a job")
+                const errorData = await res.json()
+                throw new Error(errorData.message || "Failed to post a job")
             }
             //successfully post a job
             navigate("/") //redirect to home
@@ -73,15 +75,19 @@ const JobForm = ()=>{
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Salary</label>
-                    <input type="text" className="form-control"
+                    <input type="number" className="form-control"
                         name="salary" value={form.salary} onChange={handleChange}
                     />
                 </div>
                  <div className="mb-3">
                     <label className="form-label">Job Type</label>
-                    <input type="text" className="form-control"
-                        name="jobType" value={form.jobType} onChange={handleChange}
-                    />
+                    <select name="jobType" className="form-select" value={form.jobType} onChange={handleChange}>
+                        <option value="">Select JobType</option>
+                        <option value="Full-time (On-site)">Full-time (On-site)</option>
+                        <option value="Full-time (Remote)">Full-time (Remote)</option>
+                        <option value="Part-time (On-site)">Part-time (On-site)</option>
+                        <option value="Part-time (Remote)">Part-time (Remote)</option>
+                    </select>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Job Description</label>
@@ -93,6 +99,7 @@ const JobForm = ()=>{
                     <label className="form-label">Job Qualification</label>
                     <textarea type="text" className="form-control"
                         name="qualifications" value={form.qualifications} onChange={handleChange} rows={3}
+                        placeholder="e.g. HTML,CSS,REACT"
                     />
                 </div>
                 <button className="btn btn-primary btn-sm">Post Job</button>
