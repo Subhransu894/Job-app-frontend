@@ -53,7 +53,7 @@ const JobForm = ()=>{
     }
     return(
         <>
-        <Navbar />
+        
         <div className="container mt-4">
             <h3 className="mb-4">Post a Job</h3>
             {error && <p className="text-danger">{error}</p>}

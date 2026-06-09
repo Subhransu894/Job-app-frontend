@@ -53,7 +53,6 @@ const Home = ()=>{
     }
     return(
         <>
-        <Navbar />
         <div className="container mt-4">
             <input type="text" className="form-control mb-3" placeholder="search jobs..."
                 value={search} onChange={(e)=>setSearch(e.target.value)} 

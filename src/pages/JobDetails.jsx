@@ -25,7 +25,7 @@ const JobDetails = ()=>{
     }
     return(
         <>
-            <Navbar/>
+            
             <div className="container mt-4">
                 <h2 className="mb-3">{job.title}</h2>
                 <div className="card shadow p-4">
