@@ -7,18 +7,21 @@ const Home = ()=>{
     const [search,setSearch]=useState("")
     const [loading,setLoading]=useState(true)
     
-    const filterJob = jobs.filter((job)=>
+    const filterJob = Array.isArray(jobs) ? jobs.filter((job)=>
         job.title.toLowerCase().includes(search.toLowerCase()) ||
         job.companyName.toLowerCase().includes(search.toLowerCase()) ||
         job.location.toLowerCase().includes(search.toLowerCase()) ||
         job.jobType.toLowerCase().includes(search.toLowerCase())
-    )
+    ) : []
 
     useEffect(()=>{
         fetch("https://job-app-backend-alpha.vercel.app/jobs")
         .then((res)=>res.json())
         .then((data)=>{
-            setJobs(data)
+            console.log("data =", data);
+            console.log("isArray =", Array.isArray(data));
+
+            setJobs(Array.isArray(data) ? data : [])
             setLoading(false)
         })
         .catch((err)=>{
