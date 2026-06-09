@@ -1,7 +1,11 @@
 import {useNavigate} from "react-router-dom"
 const Navbar = ()=>{
     const navigate = useNavigate()
-
+    const token = localStorage.getItem("token")
+    const handleLogout = ()=>{
+        localStorage.removeItem("token");
+        navigate("/login",{replace:true})
+    }
     return(
         <nav style={{width:"100%",backgroundColor:"blue"}}>
            <div className="container d-flex flex-column flex-md-row align-items-start align-items-md-center px-4 py-3 shadow-sm" >
@@ -11,6 +15,11 @@ const Navbar = ()=>{
                 <h4 className="m-0 " style={{color:"gray",cursor:"pointer"}} onClick={()=>navigate("/post-job")}>
                     Post a Job
                 </h4>
+                <div className="ms-md-auto mt-2 mt-md-0">
+                    {token && (
+                        <button className="btn btn-danger" onClick={handleLogout}>Log out</button>
+                    )}
+                </div>
             </div> 
         </nav>
     )

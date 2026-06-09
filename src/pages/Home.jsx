@@ -6,6 +6,8 @@ const Home = ()=>{
     const [jobs,setJobs]=useState([])
     const [search,setSearch]=useState("")
     const [loading,setLoading]=useState(true)
+
+    const token = localStorage.getItem("token");
     
     const filterJob = Array.isArray(jobs) ? jobs.filter((job)=>
         job.title.toLowerCase().includes(search.toLowerCase()) ||

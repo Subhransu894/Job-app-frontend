@@ -19,11 +19,13 @@ function AppContent() {
       {!hideNavbar && <Navbar />}
 
       <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
         <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path='/jobs/:id' element={<ProtectedRoute><JobDetails /></ProtectedRoute>} />
         <Route path='/post-job' element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        
       </Routes>
     </>
   );
