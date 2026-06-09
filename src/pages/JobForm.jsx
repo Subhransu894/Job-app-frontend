@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const JobForm = ()=>{
     const navigate = useNavigate()
+    const token = localStorage.getItem("token")
     const [form,setForm]=useState({
         title:"",
         companyName:"",
