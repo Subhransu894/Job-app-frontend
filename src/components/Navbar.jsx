@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom"
 const Navbar = ()=>{
     const navigate = useNavigate()
+
     return(
         <nav style={{width:"100%",backgroundColor:"blue"}}>
            <div className="container d-flex flex-column flex-md-row align-items-start align-items-md-center px-4 py-3 shadow-sm" >

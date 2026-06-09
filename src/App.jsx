@@ -1,24 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import './App.css'
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
-import Home from './pages/Home'
-import JobForm from './pages/JobForm'
-import JobDetails from './pages/JobDetails'
-function App() {
+import { Routes, Route, useLocation, BrowserRouter as Router } from "react-router-dom";
+import Home from './pages/Home';
+import JobForm from './pages/JobForm';
+import JobDetails from './pages/JobDetails';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
+
+function AppContent() {
+  const location = useLocation();
+
+  const hideNavbar =
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route  path='/' element={< Home/>} />
-          <Route path='/jobs/:id' element={<JobDetails/>} />
-          <Route  path='/post-job' element={<JobForm/>}/>
-        </Routes>
-      </Router>
+      {!hideNavbar && <Navbar />}
+
+      <Routes>
+        <Route path='/' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path='/jobs/:id' element={<ProtectedRoute><JobDetails /></ProtectedRoute>} />
+        <Route path='/post-job' element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}

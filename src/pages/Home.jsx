@@ -37,6 +37,9 @@ const Home = ()=>{
         try {
             const res = await fetch(`https://job-app-backend-alpha.vercel.app/jobs/${id}`,{
                 method:"DELETE",
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
             })
             if(!res.ok){
                 throw new Error("Failed to delete job")

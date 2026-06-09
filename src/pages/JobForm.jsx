@@ -34,7 +34,10 @@ const JobForm = ()=>{
         try {
             const res = await fetch("https://job-app-backend-alpha.vercel.app/jobs",{
                 method:"POST",
-                headers:{"Content-Type":"application/json"},
+                headers:{
+                    "Content-Type":"application/json",
+                    Authorization: `Bearer ${token}`
+                },
                 body: JSON.stringify(jobData),
             })
             if(!res.ok){
