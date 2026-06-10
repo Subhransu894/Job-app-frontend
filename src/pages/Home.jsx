@@ -1,6 +1,7 @@
 import Navbar  from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
+import { toast } from "react-toastify"
 const Home = ()=>{
     const navigate = useNavigate()
     const [jobs,setJobs]=useState([])
@@ -48,9 +49,10 @@ const Home = ()=>{
             }
             //remove the deleted job from ui 
             setJobs(jobs.filter((job)=>job._id !== id))
+            toast.success("Job deleted successfully!")
         } catch (error) {
             console.error(error)
-            alert("Failed to Delete job")
+            toast.error("Faild to delete job")
         }
     }
     return(
